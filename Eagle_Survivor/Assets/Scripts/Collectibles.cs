@@ -5,9 +5,9 @@ using UnityEngine;
 public class Collectibles : MonoBehaviour
 {
     //Items
-    private GameObject[] itemList;
-    private int totalItems;
-    private int collectedItems = 0;
+    public GameObject[] itemList;
+    public int totalItems;
+    public int collectedItems = 0;
 
     private void Awake()
     {
@@ -28,6 +28,7 @@ public class Collectibles : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Trigger with " + other.gameObject.name);
         if (other.gameObject.tag == "Item")
         {
             collectedItems++;
