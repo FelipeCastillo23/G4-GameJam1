@@ -122,7 +122,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        GameWon();
+        //GameWon();
     }
 
     private void OnCollisionEnter(Collision other)
