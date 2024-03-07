@@ -1,81 +1,18 @@
 fileFormatVersion: 2
-guid: d15903aca0a14bd4fb89d3e7d9ba14dc
-timeCreated: 1547397975
-licenseType: Store
+guid: da4eeef492c0d1842963d6576330682d
 ModelImporter:
-  serializedVersion: 22
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
-    100002: EagleSummon001
-    100004: joint1
-    100006: joint10
-    100008: joint11
-    100010: joint12
-    100012: joint14
-    100014: joint15
-    100016: joint16
-    100018: joint17
-    100020: joint18
-    100022: joint2
-    100024: joint26
-    100026: joint27
-    100028: joint28
-    100030: joint3
-    100032: joint30
-    100034: joint36
-    100036: joint37
-    100038: joint38
-    100040: joint39
-    100042: joint4
-    100044: joint40
-    100046: joint41
-    100048: joint42
-    100050: joint43
-    100052: joint44
-    100054: joint45
-    100056: joint46
-    100058: joint6
-    100060: joint7
-    100062: joint8
-    100064: joint9
-    100066: ROOT
     400000: //RootNode
-    400002: EagleSummon001
-    400004: joint1
-    400006: joint10
-    400008: joint11
-    400010: joint12
-    400012: joint14
-    400014: joint15
-    400016: joint16
-    400018: joint17
-    400020: joint18
-    400022: joint2
-    400024: joint26
-    400026: joint27
-    400028: joint28
-    400030: joint3
-    400032: joint30
-    400034: joint36
-    400036: joint37
-    400038: joint38
-    400040: joint39
-    400042: joint4
-    400044: joint40
-    400046: joint41
-    400048: joint42
-    400050: joint43
-    400052: joint44
-    400054: joint45
-    400056: joint46
-    400058: joint6
-    400060: joint7
-    400062: joint8
-    400064: joint9
-    400066: ROOT
-    7400000: Eagle_damaged
-    7400002: Eagle_Damaged
-    9500000: //RootNode
+    2100000: 01 - Default
+    2100002: 'Material #12'
+    2100004: 01 - Default2
+    2100006: 'Material #21'
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: cherry
+    4300002: Cherry
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -95,6 +32,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -109,6 +47,7 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -126,11 +65,16 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
@@ -145,12 +89,11 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
