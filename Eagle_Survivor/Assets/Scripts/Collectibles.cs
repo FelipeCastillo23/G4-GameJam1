@@ -9,8 +9,11 @@ public class Collectibles : MonoBehaviour
     public int totalItems;
     public int collectedItems = 0;
 
+    private EagleController eagleController;
+
     private void Awake()
     {
+        eagleController = GetComponent<EagleController>();
         itemList = GameObject.FindGameObjectsWithTag("Item");
         totalItems = itemList.Length;
     }
@@ -32,11 +35,18 @@ public class Collectibles : MonoBehaviour
         if (other.gameObject.tag == "Item")
         {
             collectedItems++;
-            other.gameObject.SetActive(false);
+
+
             if (collectedItems == totalItems)
             {
                 Debug.Log("Game Won");
             }
+        }
+        if (other.gameObject.tag == "Food")
+        {
+            Debug.Log("Collect food");
+            eagleController.timeRemaining += 5.0f;
+            other.gameObject.SetActive(false);
         }
     }
 }
