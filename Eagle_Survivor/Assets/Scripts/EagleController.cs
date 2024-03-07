@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class EagleController : MonoBehaviour
 {
     #region Variables
     // Movement
@@ -22,6 +22,11 @@ public class PlayerController : MonoBehaviour
     private Quaternion startRotation;
     private new Rigidbody rigidbody;
 
+    public float timeRemaining = 30f;
+
+
+
+    // Game conditions
     public bool isAlive = true;
     private bool winCondition = false;
 
@@ -43,6 +48,14 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        timeRemaining -= Time.deltaTime;
+
+        if (timeRemaining <= 0)
+        {
+            GameOver();
+        }
+
         if (isAlive && !winCondition)
         {
             verticalInput = Input.GetAxis("Vertical");
@@ -127,6 +140,6 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        GameOver();
+        //GameOver();
     }
 }
