@@ -10,7 +10,7 @@ public class MainMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-         audioBackground.Play();
+        audioBackground.Play();
     }
 
     public void playButton()
@@ -19,18 +19,32 @@ public class MainMenu : MonoBehaviour
         audioButton.Play();
         Time.timeScale = 1f;
         SceneManager.LoadScene(1);
-     
+
     }
 
-     public void ControlButton()
-    {  
+    public void ControlButton()
+    {
         audioButton.Play();
-     
+
     }
 
 
     public void Cerrar()
     {
         Application.Quit();
+    }
+
+    public void Pausa()
+    {
+
+        Time.timeScale = 0f;
+        audioButton.Play();
+    }
+
+    public void Reanudar()
+    {
+        audioButton.Play();
+        Time.timeScale = 1f;
+
     }
 }
