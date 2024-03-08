@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EagleController : MonoBehaviour
 {
@@ -33,6 +34,8 @@ public class EagleController : MonoBehaviour
     public TextMeshProUGUI timeText;
     public TextMeshProUGUI scoreText;
     public GameObject pauseObj;
+    public GameObject gameOverScreen;
+    public GameObject winScreen;
 
     private bool isPaused = false;
 
@@ -48,6 +51,9 @@ public class EagleController : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         startPosition = transform.position;
         startRotation = transform.rotation;
+
+        gameOverScreen.SetActive(false);
+        winScreen.SetActive(false);
 
         foodList = GameObject.FindGameObjectsWithTag("Food");
 
@@ -88,11 +94,12 @@ public class EagleController : MonoBehaviour
             GetLateralRotation();
         }
 
-        // if (Input.GetButtonDown("Cancel"))
-        // {
-        //     Debug.Log("Game Paused");
-        //     PauseGame();
-        // }
+        if (Input.GetButtonDown("Cancel") && (winCondition || !isAlive))
+        {
+            //Debug.Log("Game Paused");
+            //PauseGame();
+            RestartGame();
+        }
     }
 
     private void GetLateralRotation()
@@ -153,18 +160,30 @@ public class EagleController : MonoBehaviour
         rigidbody.isKinematic = false;
         isAlive = true;
         winCondition = false;
+        collectedFood = 0;
+        scoreText.text = "Score: " + collectedFood + "/" + foodList.Length;
+        timeText.text = "Time: " + timeRemaining.ToString("f0");
+        gameOverScreen.SetActive(false);
+        winScreen.SetActive(false);
+        foreach (GameObject food in foodList)
+        {
+            food.SetActive(true);
+        }
+        SceneManager.LoadScene(0);
     }
 
     private void GameOver()
     {
         isAlive = false;
         rigidbody.isKinematic = true;
+        gameOverScreen.SetActive(true);
     }
 
     private void GameWon()
     {
         winCondition = true;
         rigidbody.isKinematic = true;
+        winScreen.SetActive(true);
     }
 
     private void OnTriggerEnter(Collider other)
