@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class EagleController : MonoBehaviour
@@ -22,9 +23,20 @@ public class EagleController : MonoBehaviour
     private Quaternion startRotation;
     private new Rigidbody rigidbody;
 
-    public float timeRemaining = 30f;
+    public float timeRemaining;
 
+    // Food
+    private GameObject[] foodList;
+    private int collectedFood = 0;
 
+    // UI
+    public TextMeshProUGUI timeText;
+    public TextMeshProUGUI scoreText;
+    public GameObject pauseObj;
+
+    private bool isPaused = false;
+
+    private float startingTime = 30.0f;
 
     // Game conditions
     public bool isAlive = true;
@@ -36,6 +48,14 @@ public class EagleController : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         startPosition = transform.position;
         startRotation = transform.rotation;
+
+        foodList = GameObject.FindGameObjectsWithTag("Food");
+
+        timeRemaining = startingTime;
+        pauseObj.SetActive(false);
+
+        scoreText.text = "Score: " + collectedFood + "/" + foodList.Length;
+        timeText.text = "Time: 30";
     }
     void FixedUpdate()
     {
@@ -49,11 +69,16 @@ public class EagleController : MonoBehaviour
     void Update()
     {
 
-        timeRemaining -= Time.deltaTime;
+
 
         if (timeRemaining <= 0)
         {
             GameOver();
+        }
+        else
+        {
+            timeRemaining -= Time.deltaTime;
+            timeText.text = "Time: " + timeRemaining.ToString("f0");
         }
 
         if (isAlive && !winCondition)
@@ -63,10 +88,11 @@ public class EagleController : MonoBehaviour
             GetLateralRotation();
         }
 
-        if (Input.GetButtonDown("Cancel") && (winCondition || !isAlive))
-        {
-            RestartGame();
-        }
+        // if (Input.GetButtonDown("Cancel"))
+        // {
+        //     Debug.Log("Game Paused");
+        //     PauseGame();
+        // }
     }
 
     private void GetLateralRotation()
@@ -113,8 +139,16 @@ public class EagleController : MonoBehaviour
 
     }
 
+    private void PauseGame()
+    {
+        isPaused = !isPaused;
+        pauseObj.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
     private void RestartGame()
     {
+        timeRemaining = startingTime;
         transform.SetPositionAndRotation(startPosition, startRotation);
         rigidbody.isKinematic = false;
         isAlive = true;
@@ -135,11 +169,23 @@ public class EagleController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //GameWon();
+        if (other.gameObject.tag == "Food")
+        {
+            collectedFood++;
+            scoreText.text = "Score: " + collectedFood + "/" + foodList.Length;
+            if (collectedFood == foodList.Length)
+            {
+                GameWon();
+            }
+
+        }
     }
 
     private void OnCollisionEnter(Collision other)
     {
-        //GameOver();
+        if (other.gameObject.tag == "Terrain")
+        {
+            GameOver();
+        }
     }
 }
